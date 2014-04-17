@@ -1,8 +1,24 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
+
 from setuptools import setup, find_packages
 from os.path import dirname, realpath, join
+from setuptools.command.test import test as TestCommand
+
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
 
 CURRENT_DIR = dirname(realpath(__file__))
 
@@ -12,7 +28,7 @@ with open(join(CURRENT_DIR, "wand_wielder/__init__.py")) as package_file:
 
 setup(
     name="wand_wielder",
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests", ]),
     version=version,
     description="Image processing in a `dict` config way, using wand",
     author="Haochuan Guo",
@@ -23,4 +39,6 @@ setup(
     install_requires=[
         "wand >= 0.3.7",
         ],
+    tests_require=['pytest'],
+    cmdclass = {'test': PyTest},
 )
