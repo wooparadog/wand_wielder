@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wooparadog/wand_wielder.svg?branch=master)](https://travis-ci.org/wooparadog/wand_wielder)
+
 # Wand Wielder
 
 Give me `dict` like config, and I'll give you an image
