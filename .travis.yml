@@ -4,4 +4,5 @@ python:
 script:
     - python setup.py test
 after_success:
+    - pip install python-coveralls
     - coveralls
