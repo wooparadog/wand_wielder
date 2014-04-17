@@ -11,7 +11,7 @@ from setuptools.command.test import test as TestCommand
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = []
+        self.test_args = ['tests', '--cov', 'wand_wielder', '--cov-report', 'html']
         self.test_suite = True
 
     def run_tests(self):
@@ -39,6 +39,6 @@ setup(
     install_requires=[
         "wand >= 0.3.7",
         ],
-    tests_require=['pytest'],
+    tests_require=['pytest', 'python-coveralls', 'pytest-cov'],
     cmdclass = {'test': PyTest},
 )
