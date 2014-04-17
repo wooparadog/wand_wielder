@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wooparadog/wand_wielder.svg?branch=master)](https://travis-ci.org/wooparadog/wand_wielder)
+[![Build Status](https://travis-ci.org/wooparadog/wand_wielder.svg?branch=master)](https://travis-ci.org/wooparadog/wand_wielder) [![Coverage Status](https://coveralls.io/repos/wooparadog/wand_wielder/badge.png?branch=master)](https://coveralls.io/r/wooparadog/wand_wielder?branch=master)
 
 # Wand Wielder
 
