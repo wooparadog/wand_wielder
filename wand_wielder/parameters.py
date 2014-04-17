@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import urllib
 from wand.image import Image
 
 class PenParameter(object):
@@ -44,12 +45,17 @@ class PenImageParameter(PenParameter):
                     {'crop': "380x340+0+0"},
                 ],
             }
+        3. `uri`, file path or url.(will be read by `urllib.urlopen`)
     '''
     def _create_image(self, image_argument):
         image = None
 
         if isinstance(image_argument, Image):
             image = image_argument
+
+        if isinstance(image_argument, str):
+            image_file = urllib.urlopen(image_argument)
+            image = Image(blob=image_file.read())
 
         elif isinstance(image_argument, dict):
             config = image_argument
@@ -72,6 +78,9 @@ class PenImageParameter(PenParameter):
 
     def validate(self, value):
         if isinstance(value, Image):
+            return True
+
+        if isinstance(value, str):
             return True
 
         if not isinstance(value, dict):
