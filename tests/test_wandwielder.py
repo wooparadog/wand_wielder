@@ -14,7 +14,7 @@ max_width = 370
 
 def test_generate_photo():
     image = Image(filename=path.join(resources_dir, "reddit_logo.png"))
-    text = "When does the narwhal bacon?"
+    text = "When does the narwhal bacon? There should and would only be one correct answer:middle night. Reddit said so"
     config = {
             'geometry': '470x650',
             'actions':[

@@ -140,11 +140,13 @@ class BoxTextPen(TextPen):
                     text=line_text+i
                     )
             if metrics.text_width > width:
-                if pos >0 and \
+                if pos > 1 and \
                         self.text[pos-1].isalpha() and\
                         i.isalpha():
-                    i = line_text[-1] + i
-                    line_text = line_text[:-1] + "-"
+                    i = (line_text[-1] + i).strip()
+                    line_text = line_text[:-1]
+                    if self.text[pos-2].isalpha():
+                        line_text += "-"
                 lines.append(line_text)
                 line = [] if i.isspace() else [i]
             else:
