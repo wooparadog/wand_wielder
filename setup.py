@@ -11,7 +11,7 @@ from setuptools.command.test import test as TestCommand
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['tests', '--cov', 'wand_wielder', '--cov-report', 'term-missing']
+        self.test_args = ['tests', '--cov', 'wand_wielder', '--cov-report', 'term-missing', '--cov-config', '.coveragerc']
         self.test_suite = True
 
     def run_tests(self):
