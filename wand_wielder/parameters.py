@@ -53,7 +53,7 @@ class PenImageParameter(PenParameter):
         if isinstance(image_argument, Image):
             image = image_argument
 
-        if isinstance(image_argument, str):
+        if isinstance(image_argument, (str, unicode)):
             image_file = urllib.urlopen(image_argument)
             image = Image(blob=image_file.read())
 
@@ -80,7 +80,7 @@ class PenImageParameter(PenParameter):
         if isinstance(value, Image):
             return True
 
-        if isinstance(value, str):
+        if isinstance(value, (str, unicode)):
             return True
 
         if not isinstance(value, dict):
