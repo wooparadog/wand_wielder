@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from urllib import urlopen
 from wand.image import Image
 
 class Canvas(object):
@@ -14,7 +15,13 @@ class Canvas(object):
 
     @classmethod
     def create_from_background(cls, background):
-        return cls(background)
+        if isinstance(background, Image):
+            image = background
+        elif isinstance(background, (str, unicode)):
+            image = Image(file=urlopen(background))
+        else:
+            raise ValueError("Wrong backgrong")
+        return cls(image)
 
     def do_action(self, pen):
         pen.draw(self)
