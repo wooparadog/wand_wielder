@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import urllib
 from wand.image import Image
 
 class PenParameter(object):
@@ -54,8 +53,7 @@ class PenImageParameter(PenParameter):
             image = image_argument
 
         if isinstance(image_argument, (str, unicode)):
-            image_file = urllib.urlopen(image_argument)
-            image = Image(blob=image_file.read())
+            image = Image(filename=image_argument)
 
         elif isinstance(image_argument, dict):
             config = image_argument
